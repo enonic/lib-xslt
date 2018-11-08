@@ -1,6 +1,5 @@
 package com.enonic.lib.xslt;
 
-import java.io.IOException;
 import java.io.StringWriter;
 import java.net.URL;
 
@@ -12,6 +11,9 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
@@ -25,6 +27,8 @@ import com.enonic.xp.script.ScriptValue;
 
 public final class XsltProcessor
 {
+    private final static Logger LOG = LoggerFactory.getLogger( XsltProcessor.class );
+
     private final TransformerFactory factory;
 
     private final XsltProcessorErrors errors;
@@ -39,6 +43,8 @@ public final class XsltProcessor
 
     private ResourceService resourceService;
 
+    private ResourceKey view;
+
     public XsltProcessor( final TransformerFactory factory )
     {
         this.factory = factory;
@@ -50,6 +56,7 @@ public final class XsltProcessor
     {
         final Resource resource = resourceService.getResource( view );
         this.xsltSource = new StreamSource( resource.getUrl().toString() );
+        this.view = view;
     }
 
     public void setModel( final ScriptValue model )
@@ -118,11 +125,12 @@ public final class XsltProcessor
     {
         try
         {
-            return ResourceKey.from( new URL( systemId ).getPath() );
+            return ResourceKey.from( this.view.getApplicationKey(), new URL( systemId ).getPath() );
         }
-        catch ( final IOException e )
+        catch ( final Exception e )
         {
-            return null;
+            LOG.warn( "Could not resolve XSLT resource path: " + systemId );
+            return this.view;
         }
     }
 
