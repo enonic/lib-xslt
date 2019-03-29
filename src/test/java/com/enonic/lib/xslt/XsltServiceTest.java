@@ -3,10 +3,10 @@ package com.enonic.lib.xslt;
 import org.junit.Test;
 
 import com.enonic.xp.resource.ResourceKey;
-import com.enonic.xp.testing.script.ScriptBeanTestSupport;
+import com.enonic.xp.testing.ScriptTestSupport;
 
 public class XsltServiceTest
-    extends ScriptBeanTestSupport
+    extends ScriptTestSupport
 {
     private XsltService service;
 

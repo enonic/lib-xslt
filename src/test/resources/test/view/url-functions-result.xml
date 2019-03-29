@@ -8,7 +8,7 @@
   <value>attachmentUrl({_name=[myattachment.pdf]})</value>
   <value>attachmentUrl({a=[1], _name=[myattachment.pdf]})</value>
   <value>attachmentUrl({_name=[myattachment.pdf], _id=[123]})</value>
-  <value>attachmentUrl({_id=[123], _label=[source]})</value>
+  <value>attachmentUrl({_label=[source], _id=[123]})</value>
   <value>serviceUrl({_service=[a]})</value>
   <value>serviceUrl({b=[2], _service=[a]})</value>
   <value>componentUrl({_component=[a]})</value>

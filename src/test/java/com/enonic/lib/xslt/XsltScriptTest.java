@@ -3,7 +3,7 @@ package com.enonic.lib.xslt;
 import org.junit.Assert;
 
 import com.enonic.xp.resource.ResourceKey;
-import com.enonic.xp.testing.script.ScriptRunnerSupport;
+import com.enonic.xp.testing.ScriptRunnerSupport;
 import com.enonic.xp.xml.DomHelper;
 
 public class XsltScriptTest
