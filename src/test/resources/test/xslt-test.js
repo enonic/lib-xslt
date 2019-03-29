@@ -30,7 +30,3 @@ exports.testUrlFunctions = function () {
 
     assertXmlEquals('view/url-functions-result.xml', result);
 };
-
-exports.testCompatibility = function () {
-    assert.assertTrue(xslt === require('/lib/xslt'));
-};
