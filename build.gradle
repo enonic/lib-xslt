@@ -3,20 +3,15 @@ plugins {
     id 'jacoco'
     id 'maven-publish'
     id 'com.enonic.defaults' version '2.0.1'
-}
-
-repositories {
-    mavenLocal()
-    jcenter()
-    maven {
-        url 'http://repo.enonic.com/public'
-    }
+    id 'com.enonic.xp.base' version '2.0.0'
 }
 
 dependencies {
+    compile "com.enonic.xp:core-api:${xpVersion}"
     compile "com.enonic.xp:portal-api:${xpVersion}"
     testCompile 'junit:junit:4.12'
     testCompile "com.enonic.xp:testing:${xpVersion}"
+    testCompile "org.mockito:mockito-core:+"
     compile 'net.sf.saxon:Saxon-HE:9.5.1-8'
 }
 
@@ -31,4 +26,10 @@ check.dependsOn jacocoTestReport
 
 artifacts {
     archives jar
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+    xp.enonicRepo()
 }

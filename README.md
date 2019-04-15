@@ -14,8 +14,9 @@ This library implements an xslt rendering method that can be used in your apps.
 
 | App Version   | XP version |
 | ------------- | ---------- |
-| 1.0.0 | 6.11.0 |
+| 2.0.0 | 7.0.0 |
 | 1.0.1 | 6.11.0 |
+| 1.0.0 | 6.11.0 |
 
 ## Building
 
