@@ -7,11 +7,11 @@ plugins {
 }
 
 dependencies {
-    compile "com.enonic.xp:core-api:${xpVersion}"
+    compile "com.enonic.xp:script-api:${xpVersion}"
     compile "com.enonic.xp:portal-api:${xpVersion}"
     testCompile 'junit:junit:4.12'
     testCompile "com.enonic.xp:testing:${xpVersion}"
-    testCompile "org.mockito:mockito-core:+"
+    testCompile "org.mockito:mockito-core:2.+"
     compile 'net.sf.saxon:Saxon-HE:9.5.1-8'
 }
 
