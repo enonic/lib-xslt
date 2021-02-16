@@ -29,7 +29,6 @@ artifacts {
 }
 
 repositories {
-    mavenLocal()
     jcenter()
     xp.enonicRepo()
 }
