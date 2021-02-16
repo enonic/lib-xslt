@@ -24,8 +24,6 @@ public final class XsltService
     {
         this.configuration = new Configuration();
         this.configuration.setLineNumbering( true );
-        this.configuration.setHostLanguage( Configuration.XSLT );
-        this.configuration.setVersionWarning( false );
         this.configuration.setCompileWithTracing( true );
         this.configuration.setValidationWarnings( true );
     }
