@@ -11,7 +11,7 @@ dependencies {
     compileOnly "com.enonic.xp:portal-api:${xpVersion}"
     testCompile 'junit:junit:4.13.2'
     testCompile "com.enonic.xp:testing:${xpVersion}"
-    testCompile "org.mockito:mockito-core:4.0.0"
+    testCompile "org.mockito:mockito-core:4.1.0"
     compile 'net.sf.saxon:Saxon-HE:10.6'
 }
 
