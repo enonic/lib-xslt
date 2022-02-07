@@ -12,7 +12,7 @@ dependencies {
     testCompile 'junit:junit:4.13.2'
     testCompile "com.enonic.xp:testing:${xpVersion}"
     testCompile "org.mockito:mockito-core:4.3.1"
-    compile 'net.sf.saxon:Saxon-HE:10.6'
+    compile 'net.sf.saxon:Saxon-HE:11.1.1'
 }
 
 jacocoTestReport {
