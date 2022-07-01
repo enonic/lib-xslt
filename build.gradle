@@ -29,6 +29,6 @@ artifacts {
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
     xp.enonicRepo()
 }
