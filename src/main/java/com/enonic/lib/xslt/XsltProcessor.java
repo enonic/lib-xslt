@@ -1,7 +1,9 @@
 package com.enonic.lib.xslt;
 
+import java.io.StringReader;
 import java.io.StringWriter;
 import java.net.URL;
+import java.util.Map;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Source;
@@ -15,11 +17,6 @@ import javax.xml.transform.stream.StreamSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Throwables;
-import com.google.common.collect.Maps;
-import com.google.common.io.Closeables;
-
-import com.enonic.xp.resource.Resource;
 import com.enonic.xp.resource.ResourceKey;
 import com.enonic.xp.resource.ResourceProblemException;
 import com.enonic.xp.resource.ResourceService;
@@ -33,42 +30,32 @@ public final class XsltProcessor
 
     private final XsltProcessorErrors errors;
 
-    private final UriResolverImpl uriResolver;
-
     private Source xsltSource;
 
     private Source xmlSource;
 
-    private Transformer transformer;
-
-    private ResourceService resourceService;
+    private final ResourceService resourceService;
 
     private ResourceKey view;
 
-    public XsltProcessor( final TransformerFactory factory )
+    public XsltProcessor( final ResourceService resourceService, final TransformerFactory factory )
     {
+        this.resourceService = resourceService;
         this.factory = factory;
         this.errors = new XsltProcessorErrors();
-        this.uriResolver = new UriResolverImpl();
+        this.factory.setErrorListener( this.errors );
+        this.factory.setURIResolver( new UriResolverImpl( resourceService ) );
     }
 
     public void setView( final ResourceKey view )
     {
-        final Resource resource = resourceService.getResource( view );
-        this.xsltSource = new StreamSource( resource.getUrl().toString() );
+        this.xsltSource = new StreamSource( new StringReader( resourceService.getResource( view ).readString() ) );
         this.view = view;
     }
 
     public void setModel( final ScriptValue model )
     {
-        if ( model != null )
-        {
-            this.xmlSource = MapToXmlConverter.toSource( model.getMap() );
-        }
-        else
-        {
-            this.xmlSource = MapToXmlConverter.toSource( Maps.newHashMap() );
-        }
+            this.xmlSource = MapToXmlConverter.toSource( model != null ? model.getMap() : Map.of() );
     }
 
     public String process()
@@ -92,15 +79,14 @@ public final class XsltProcessor
     {
         if ( e instanceof TransformerException )
         {
-            return handleError( (TransformerException) e );
+            throw handleError( (TransformerException) e );
         }
 
         if ( e instanceof RuntimeException )
         {
-            return (RuntimeException) e;
+            throw (RuntimeException) e;
         }
-
-        return Throwables.propagate( e );
+        throw new RuntimeException( e );
     }
 
     private RuntimeException handleError( final TransformerException e )
@@ -118,7 +104,7 @@ public final class XsltProcessor
                 build();
         }
 
-        return Throwables.propagate( e );
+        throw new RuntimeException( e );
     }
 
     private ResourceKey toResourceKey( final String systemId )
@@ -129,7 +115,7 @@ public final class XsltProcessor
         }
         catch ( final Exception e )
         {
-            LOG.warn( "Could not resolve XSLT resource path: " + systemId );
+            LOG.warn( "Could not resolve XSLT resource path: {}", systemId );
             return this.view;
         }
     }
@@ -137,35 +123,12 @@ public final class XsltProcessor
     private String doProcess()
         throws Exception
     {
-        createTransformer();
+        Transformer transformer = this.factory.newTransformer( this.xsltSource );
+        transformer.setErrorListener( this.errors );
+        transformer.setOutputProperty( OutputKeys.OMIT_XML_DECLARATION, "yes" );
 
         final StringWriter out = new StringWriter();
-        final StreamResult result = new StreamResult( out );
-
-        try
-        {
-            this.transformer.transform( this.xmlSource, result );
-            return out.getBuffer().toString();
-        }
-        finally
-        {
-            Closeables.close( out, false );
-        }
-    }
-
-    protected void createTransformer()
-        throws Exception
-    {
-        this.factory.setErrorListener( this.errors );
-        this.factory.setURIResolver( uriResolver );
-        this.transformer = this.factory.newTransformer( this.xsltSource );
-        this.transformer.setErrorListener( this.errors );
-        this.transformer.setOutputProperty( OutputKeys.OMIT_XML_DECLARATION, "yes" );
-    }
-
-    public void setResourceService( final ResourceService resourceService )
-    {
-        this.resourceService = resourceService;
-        this.uriResolver.setResourceService( resourceService );
+        transformer.transform( this.xmlSource, new StreamResult( out ) );
+        return out.toString();
     }
 }

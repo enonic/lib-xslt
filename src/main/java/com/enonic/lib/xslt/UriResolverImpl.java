@@ -14,7 +14,12 @@ import com.enonic.xp.resource.ResourceService;
 final class UriResolverImpl
     implements URIResolver
 {
-    private ResourceService resourceService;
+    private final ResourceService resourceService;
+
+    public UriResolverImpl( final ResourceService resourceService )
+    {
+        this.resourceService = resourceService;
+    }
 
     @Override
     public Source resolve( final String href, final String base )
@@ -37,10 +42,5 @@ final class UriResolverImpl
         final ResourceKey resolvedResourceKey = base.resolve( "../" + href );
         final Resource resolvedResource = resourceService.getResource( resolvedResourceKey );
         return resolvedResource.exists() ? new StreamSource( resolvedResource.getUrl().toString() ) : null;
-    }
-
-    public void setResourceService( final ResourceService resourceService )
-    {
-        this.resourceService = resourceService;
     }
 }
