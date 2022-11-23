@@ -1,12 +1,12 @@
 package com.enonic.lib.xslt;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.xml.transform.ErrorListener;
 import javax.xml.transform.TransformerException;
 
-import com.google.common.collect.Lists;
 
 final class XsltProcessorErrors
     implements ErrorListener, Iterable<TransformerException>
@@ -15,7 +15,7 @@ final class XsltProcessorErrors
 
     public XsltProcessorErrors()
     {
-        this.errors = Lists.newArrayList();
+        this.errors = new ArrayList<>();
     }
 
     public boolean hasErrors()

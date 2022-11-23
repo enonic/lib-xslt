@@ -9,10 +9,11 @@ plugins {
 dependencies {
     compileOnly "com.enonic.xp:script-api:${xpVersion}"
     compileOnly "com.enonic.xp:portal-api:${xpVersion}"
-    testCompile 'junit:junit:4.13.2'
-    testCompile "com.enonic.xp:testing:${xpVersion}"
-    testCompile "org.mockito:mockito-core:4.9.0"
-    compile 'net.sf.saxon:Saxon-HE:11.4'
+    testImplementation "com.enonic.xp:testing:${xpVersion}"
+    testImplementation "org.mockito:mockito-core:4.9.0"
+    implementation ('net.sf.saxon:Saxon-HE:11.4') {
+        exclude group: 'xml-apis'
+    }
 }
 
 jacocoTestReport {

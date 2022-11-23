@@ -2,8 +2,6 @@ package com.enonic.lib.xslt;
 
 import java.util.function.Supplier;
 
-import javax.xml.transform.TransformerFactory;
-
 import net.sf.saxon.Configuration;
 import net.sf.saxon.TransformerFactoryImpl;
 
@@ -18,7 +16,7 @@ public final class XsltService
 {
     private final Configuration configuration;
 
-    private ResourceService resourceService;
+    private Supplier<ResourceService> resourceServiceSupplier;
 
     public XsltService()
     {
@@ -28,29 +26,16 @@ public final class XsltService
         this.configuration.setValidationWarnings( true );
     }
 
-    private TransformerFactory createTransformerFactory()
-    {
-        return new TransformerFactoryImpl( this.configuration );
-    }
-
     public XsltProcessor newProcessor()
     {
-        final TransformerFactory factory = createTransformerFactory();
-        XsltProcessor processor = new XsltProcessor( factory );
-        processor.setResourceService( resourceService );
-        return processor;
-    }
-
-    public void setViewFunctionService( final Supplier<ViewFunctionService> viewFunctionService )
-    {
-        new XsltFunctionLibrary( viewFunctionService ).registerAll( this.configuration );
+        return new XsltProcessor( resourceServiceSupplier.get(), new TransformerFactoryImpl( this.configuration ) );
     }
 
     @Override
     public void initialize( final BeanContext context )
     {
-        this.resourceService = context.getService( ResourceService.class ).get();
+        this.resourceServiceSupplier = context.getService( ResourceService.class );
         final Supplier<ViewFunctionService> service = context.getService( ViewFunctionService.class );
-        setViewFunctionService( service );
+        new XsltFunctionLibrary( service ).registerAll( this.configuration );
     }
 }
