@@ -10,7 +10,7 @@ dependencies {
     compileOnly "com.enonic.xp:script-api:${xpVersion}"
     compileOnly "com.enonic.xp:portal-api:${xpVersion}"
     testImplementation "com.enonic.xp:testing:${xpVersion}"
-    testImplementation "org.mockito:mockito-core:4.10.0"
+    testImplementation "org.mockito:mockito-core:4.11.0"
     implementation ('net.sf.saxon:Saxon-HE:11.4') {
         exclude group: 'xml-apis'
     }
