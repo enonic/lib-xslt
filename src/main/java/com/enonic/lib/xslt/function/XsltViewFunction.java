@@ -10,8 +10,6 @@ import net.sf.saxon.value.SequenceType;
 
 import com.enonic.xp.portal.PortalRequest;
 import com.enonic.xp.portal.PortalRequestAccessor;
-import com.enonic.xp.portal.view.ViewFunctionParams;
-import com.enonic.xp.portal.view.ViewFunctionService;
 
 final class XsltViewFunction
     extends AbstractFunction

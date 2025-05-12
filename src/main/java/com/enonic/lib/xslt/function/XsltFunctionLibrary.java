@@ -4,8 +4,6 @@ import java.util.function.Supplier;
 
 import net.sf.saxon.Configuration;
 
-import com.enonic.xp.portal.view.ViewFunctionService;
-
 public final class XsltFunctionLibrary
 {
     private final Supplier<ViewFunctionService> viewFunctionService;
