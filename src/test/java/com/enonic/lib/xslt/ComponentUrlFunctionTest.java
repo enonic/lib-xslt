@@ -30,7 +30,8 @@ public class ComponentUrlFunctionTest
     void setUp()
     {
         urlService = mock( PortalUrlService.class );
-        function = new ComponentUrlFunction( urlService );
+        function = new ComponentUrlFunction();
+        function.setUrlService( urlService );
     }
 
     @Test

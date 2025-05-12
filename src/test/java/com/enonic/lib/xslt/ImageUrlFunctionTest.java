@@ -30,7 +30,8 @@ public class ImageUrlFunctionTest
     void setUp()
     {
         urlService = mock( PortalUrlService.class );
-        function = new ImageUrlFunction( urlService );
+        function = new ImageUrlFunction();
+        function.setUrlService( urlService );
     }
 
     @Test

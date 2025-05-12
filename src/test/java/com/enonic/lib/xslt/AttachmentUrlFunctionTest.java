@@ -30,7 +30,8 @@ public class AttachmentUrlFunctionTest
     void setUp()
     {
         urlService = mock( PortalUrlService.class );
-        function = new AttachmentUrlFunction( urlService );
+        function = new AttachmentUrlFunction();
+        function.setUrlService( urlService );
     }
 
     @Test

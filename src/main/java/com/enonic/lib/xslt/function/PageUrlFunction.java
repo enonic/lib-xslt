@@ -1,6 +1,5 @@
 package com.enonic.lib.xslt.function;
 
-import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -16,13 +15,7 @@ import static com.enonic.lib.xslt.function.ParamsHelper.singleValue;
 public final class PageUrlFunction
     implements ViewFunction
 {
-    private final PortalUrlService urlService;
-
-    @Activate
-    public PageUrlFunction( @Reference final PortalUrlService urlService )
-    {
-        this.urlService = urlService;
-    }
+    private PortalUrlService urlService;
 
     @Override
     public String getName()
@@ -46,5 +39,11 @@ public final class PageUrlFunction
         arguments.forEach( ( key, value ) -> urlParams.getParams().put( key, value ) );
 
         return this.urlService.pageUrl( urlParams );
+    }
+
+    @Reference
+    public void setUrlService( final PortalUrlService urlService )
+    {
+        this.urlService = urlService;
     }
 }

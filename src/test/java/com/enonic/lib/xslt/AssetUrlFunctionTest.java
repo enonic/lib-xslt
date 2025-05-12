@@ -30,7 +30,8 @@ public class AssetUrlFunctionTest
     void setUp()
     {
         urlService = mock( PortalUrlService.class );
-        function = new AssetUrlFunction( urlService );
+        function = new AssetUrlFunction();
+        function.setUrlService( urlService );
     }
 
     @Test
