@@ -2,6 +2,7 @@ package com.enonic.lib.xslt;
 
 import org.junit.Assert;
 
+import com.enonic.lib.xslt.function.ViewFunctionService;
 import com.enonic.xp.resource.ResourceKey;
 import com.enonic.xp.testing.ScriptRunnerSupport;
 import com.enonic.xp.xml.DomHelper;
@@ -9,6 +10,14 @@ import com.enonic.xp.xml.DomHelper;
 public class XsltScriptTest
     extends ScriptRunnerSupport
 {
+    @Override
+    protected void initialize()
+        throws Exception
+    {
+        super.initialize();
+        addService( ViewFunctionService.class, new MockViewFunctionService() );
+    }
+
     @Override
     public String getScriptTestFile()
     {
