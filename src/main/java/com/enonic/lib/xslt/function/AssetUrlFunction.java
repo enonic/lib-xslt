@@ -33,7 +33,6 @@ public final class AssetUrlFunction
         urlParams.portalRequest( PortalRequestAccessor.get() ); // TODO: remove this, XP8 must resolve the request
         urlParams.path( singleValue( arguments, "_path" ) );
         urlParams.application( singleValue( arguments, "_application" ) );
-        urlParams.contextPathType( singleValue( arguments, "_contextPath" ) );
         urlParams.type( singleValue( arguments, "_type" ) );
 
         arguments.forEach( ( key, value ) -> urlParams.getParams().put( key, value ) );

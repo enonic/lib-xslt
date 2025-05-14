@@ -9,7 +9,6 @@ import com.google.common.collect.Multimap;
 
 import com.enonic.lib.xslt.function.ServiceUrlFunction;
 import com.enonic.lib.xslt.function.ViewFunctionParams;
-import com.enonic.xp.portal.url.ContextPathType;
 import com.enonic.xp.portal.url.PortalUrlService;
 import com.enonic.xp.portal.url.ServiceUrlParams;
 
@@ -48,7 +47,6 @@ public class ServiceUrlFunctionTest
 
         Multimap<String, String> args = LinkedHashMultimap.create();
         args.put( "_type", "absolute" );
-        args.put( "_contextPath", "relative" );
         args.put( "_service", "serviceName" );
         args.put( "_application", "appName" );
         args.put( "a", "1" );
@@ -70,7 +68,6 @@ public class ServiceUrlFunctionTest
 
         assertEquals( "serviceName", capturedParams.getService() );
         assertEquals( "appName", capturedParams.getApplication() );
-        assertEquals( ContextPathType.RELATIVE, capturedParams.getContextPathType() );
         assertEquals( "absolute", capturedParams.getType() );
 
         Multimap<String, String> queryParams = capturedParams.getParams();

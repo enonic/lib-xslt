@@ -32,7 +32,6 @@ public final class ServiceUrlFunction
 
         urlParams.portalRequest( PortalRequestAccessor.get() ); // TODO: remove this, XP8 must resolve the request
         urlParams.type( singleValue( arguments, "_type" ) );
-        urlParams.contextPathType( singleValue( arguments, "_contextPath" ) );
         urlParams.service( singleValue( arguments, "_service" ) );
         urlParams.application( singleValue( arguments, "_application" ) );
 
