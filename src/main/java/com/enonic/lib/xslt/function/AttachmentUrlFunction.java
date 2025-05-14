@@ -32,7 +32,6 @@ public final class AttachmentUrlFunction
 
         urlParams.portalRequest( PortalRequestAccessor.get() ); // TODO: remove this, XP8 must resolve the request
         urlParams.type( singleValue( arguments, "_type" ) );
-        urlParams.contextPathType( singleValue( arguments, "_contextPath" ) );
         urlParams.id( singleValue( arguments, "_id" ) );
         urlParams.path( singleValue( arguments, "_path" ) );
         urlParams.name( singleValue( arguments, "_name" ) );

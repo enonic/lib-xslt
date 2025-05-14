@@ -10,7 +10,6 @@ import com.google.common.collect.Multimap;
 import com.enonic.lib.xslt.function.AssetUrlFunction;
 import com.enonic.lib.xslt.function.ViewFunctionParams;
 import com.enonic.xp.portal.url.AssetUrlParams;
-import com.enonic.xp.portal.url.ContextPathType;
 import com.enonic.xp.portal.url.PortalUrlService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -49,7 +48,6 @@ public class AssetUrlFunctionTest
         Multimap<String, String> args = LinkedHashMultimap.create();
         args.put( "_path", "some/path" );
         args.put( "_application", "appName" );
-        args.put( "_contextPath", "relative" );
         args.put( "_type", "absolute" );
         args.put( "a", "1" );
         args.put( "b", "2" );
@@ -70,7 +68,6 @@ public class AssetUrlFunctionTest
 
         assertEquals( "some/path", capturedParams.getPath() );
         assertEquals( "appName", capturedParams.getApplication() );
-        assertEquals( ContextPathType.RELATIVE, capturedParams.getContextPathType() );
         assertEquals( "absolute", capturedParams.getType() );
 
         Multimap<String, String> queryParams = capturedParams.getParams();
