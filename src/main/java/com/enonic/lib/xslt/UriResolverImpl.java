@@ -1,6 +1,6 @@
 package com.enonic.lib.xslt;
 
-import java.net.URL;
+import java.net.URI;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.TransformerException;
@@ -27,8 +27,8 @@ final class UriResolverImpl
     {
         try
         {
-            final URL url = new URL( base );
-            return resolve( href, ResourceKey.from( url.getPath() ) );
+            final URI uri = URI.create( base );
+            return resolve( href, ResourceKey.from( uri.getSchemeSpecificPart() ) );
         }
         catch ( final Exception e )
         {
@@ -37,10 +37,15 @@ final class UriResolverImpl
     }
 
     private Source resolve( final String href, final ResourceKey base )
-        throws TransformerException
     {
         final ResourceKey resolvedResourceKey = base.resolve( "../" + href );
         final Resource resolvedResource = resourceService.getResource( resolvedResourceKey );
-        return resolvedResource.exists() ? new StreamSource( resolvedResource.getUrl().toString() ) : null;
+        if ( !resolvedResource.exists() )
+        {
+            return null;
+        }
+        final StreamSource source = new StreamSource( resolvedResource.openStream() );
+        source.setSystemId( resolvedResourceKey.toString() );
+        return source;
     }
 }
