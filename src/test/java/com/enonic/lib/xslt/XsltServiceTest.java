@@ -1,6 +1,6 @@
 package com.enonic.lib.xslt;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.enonic.xp.resource.ResourceKey;
 import com.enonic.xp.testing.ScriptTestSupport;

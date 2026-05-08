@@ -5,7 +5,6 @@ import org.osgi.service.component.annotations.Reference;
 
 import com.google.common.collect.Multimap;
 
-import com.enonic.xp.portal.PortalRequestAccessor;
 import com.enonic.xp.portal.url.PortalUrlService;
 import com.enonic.xp.portal.url.ServiceUrlParams;
 
@@ -30,7 +29,6 @@ public final class ServiceUrlFunction
 
         final Multimap<String, String> arguments = params.getArgs();
 
-        urlParams.portalRequest( PortalRequestAccessor.get() ); // TODO: remove this, XP8 must resolve the request
         urlParams.type( singleValue( arguments, "_type" ) );
         urlParams.service( singleValue( arguments, "_service" ) );
         urlParams.application( singleValue( arguments, "_application" ) );
