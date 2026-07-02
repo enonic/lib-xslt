@@ -1,13 +1,15 @@
 = XSLT Library
 
-image::https://img.shields.io/badge/xp-7.+-blue.svg[role="right"]
+image::https://img.shields.io/badge/xp-8.+-blue.svg[role="right"]
+
+NOTE: Versions 3.x target XP 8+.
 
 This library provides basic XSLT rendering functionality to create pages and parts using XSLT as the templating language.
 
 [source,groovy]
 ----
 dependencies {
-  include 'com.enonic.lib:lib-xslt:2.+'
+  include 'com.enonic.lib:lib-xslt:3.+'
 }
 ----
 
@@ -59,8 +61,3 @@ This will create a document, based on the template in the view, and the content 
 
 * `view` (_object_) Location of the view. Use resolve(..) to resolve a view.
 * `model` (_object_) Model that is passed to the view.
-
-
-== Compatibility
-
-If you are upgrading from one of the early versions of the lib (before 2.0.0) to 2.0.0 or higher, make sure you are using correct reference: `/lib/xslt` (not `/lib/xp/xslt` or `/site/lib/xp/xslt`).
