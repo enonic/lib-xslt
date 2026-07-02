@@ -1,7 +1,5 @@
 = XSLT Library
 
-image::https://img.shields.io/badge/xp-8.+-blue.svg[role="right"]
-
 NOTE: Versions 3.x target XP 8+.
 
 This library provides basic XSLT rendering functionality to create pages and parts using XSLT as the templating language.
@@ -47,7 +45,6 @@ var model = {
 };
 var result = xsltLib.render(view, model);
 ----
-
 
 == API
 
