@@ -453,11 +453,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<div class="imageblock right">
-<div class="content">
-<img src="https://img.shields.io/badge/xp-8.+-blue.svg" alt="xp 8.+ blue">
-</div>
-</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -553,7 +548,7 @@ var result = xsltLib.render(view, model);</code></pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-07-02 08:01:11 UTC
+Last updated 2026-07-02 08:08:21 UTC
 </div>
 </div>
 </body>
