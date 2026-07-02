@@ -447,7 +447,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#render"><code>render</code></a></li>
 </ul>
 </li>
-<li><a href="#compatibility">Compatibility</a></li>
 </ul>
 </div>
 </div>
@@ -458,6 +457,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <img src="https://img.shields.io/badge/xp-8.+-blue.svg" alt="xp 8.+ blue">
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Versions 3.x target XP 8+.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>This library provides basic XSLT rendering functionality to create pages and parts using XSLT as the templating language.</p>
@@ -539,18 +550,10 @@ var result = xsltLib.render(view, model);</code></pre>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="compatibility"><a class="link" href="#compatibility">Compatibility</a></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>If you are upgrading from one of the early versions of the lib (before 2.0.0) to 2.0.0 or higher, make sure you are using correct reference: <code>/lib/xslt</code> (not <code>/lib/xp/xslt</code> or <code>/site/lib/xp/xslt</code>).</p>
-</div>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-07-02 07:57:53 UTC
+Last updated 2026-07-02 08:01:11 UTC
 </div>
 </div>
 </body>
