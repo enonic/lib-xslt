@@ -20,7 +20,7 @@ var service = __.newBean('com.enonic.lib.xslt.XsltService');
  */
 exports.render = function (view, model) {
     var processor = service.newProcessor();
-    processor.view = view;
-    processor.model = __.toScriptValue(model);
+    processor.setView(view);
+    processor.setModel(__.toScriptValue(model));
     return processor.process();
 };

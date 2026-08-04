@@ -35,6 +35,10 @@ test {
     useJUnitPlatform()
 }
 
+xp {
+    scriptEngines = ['Nashorn', 'GraalJS']
+}
+
 artifacts {
     archives jar
 }
